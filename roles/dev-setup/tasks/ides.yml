@@ -1,0 +1,12 @@
+---
+- name: install clion
+  become: true
+  snap:
+    name: clion
+    classic: true
+
+- name: install goland
+  become: true
+  snap:
+    name: goland
+    classic: true

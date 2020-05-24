@@ -1,0 +1,27 @@
+---
+- name: check if terraform archive exists
+  register: terraform_archive_result
+  stat:
+    path: /home/{{ ansible_user_id }}/.cache/ansible-workdir/terraform_0.12.24_linux_amd64.zip
+
+- name: download terraform archive
+  when: terraform_archive_result.stat.exists == false
+  get_url:
+    url: https://releases.hashicorp.com/terraform/0.12.24/terraform_0.12.24_linux_amd64.zip
+    checksum: sha256:602d2529aafdaa0f605c06adb7c72cfb585d8aa19b3f4d8d189b42589e27bf11
+    dest: /home/{{ ansible_user_id }}/.cache/ansible-workdir/terraform_0.12.24_linux_amd64.zip
+    mode: 0644
+
+- name: check if terraform installation dir exists
+  register: terraform_install_result
+  stat:
+    path: /usr/local/bin/terraform
+
+- name: install terraform
+  when: terraform_install_result.stat.exists == false
+  become: true
+  unarchive:
+    src: /home/{{ ansible_user_id }}/.cache/ansible-workdir/terraform_0.12.24_linux_amd64.zip
+    remote_src: true
+    dest: /usr/local/bin
+    mode: 0755

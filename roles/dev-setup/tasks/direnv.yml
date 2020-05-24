@@ -1,0 +1,11 @@
+---
+- name: install direnv
+  become: true
+  apt:
+    name: direnv
+
+- name: setup direnv bash hook
+  lineinfile:
+    path: /home/{{ ansible_user_id }}/.bashrc
+    line: eval "$(direnv hook bash)"
+    create: true

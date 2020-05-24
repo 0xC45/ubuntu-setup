@@ -1,0 +1,49 @@
+---
+- when: ansible_distribution != 'Ubuntu' or ansible_distribution_version != '20.04'
+  name: check platform
+  fail:
+    msg: This playbook requires Ubuntu 20.04
+
+- name: create ~/workspace directory
+  file:
+    path: /home/{{ ansible_user_id }}/workspace
+    state: directory
+    mode: 0755
+
+- name: create ~/.cache/ansible-workdir directory
+  file:
+    path: /home/{{ ansible_user_id }}/.cache/ansible-workdir
+    state: directory
+    mode: 0755
+
+- name: install utilities
+  become: true
+  apt:
+    name: '{{ package_name }}'
+  loop:
+    - build-essential
+    - curl
+    - jq
+    - make-doc
+    - thunderbird
+    - tmux
+    - tree
+    - vim
+  loop_control:
+    loop_var: package_name
+
+- include_tasks: '{{ task_name }}'
+  loop:
+    - direnv.yml
+# TODO: no docker release for ubuntu 20.04 yet
+#    - docker.yml
+    - drawio.yml
+    - git.yml
+    - go.yml
+    - ides.yml
+    - keepassxc.yml
+    - terraform.yml
+# TODO: once docker is working, make a docker image with zola. no need to install it on the base os
+    - zola.yml
+  loop_control:
+    loop_var: task_name

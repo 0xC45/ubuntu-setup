@@ -1,0 +1,43 @@
+---
+- name: check if go archive exists
+  register: go_archive_result
+  stat:
+    path: /home/{{ ansible_user_id }}/.cache/ansible-workdir/go1.14.2.linux-amd64.tar.gz
+
+- name: download go archive
+  when: go_archive_result.stat.exists == false
+  get_url:
+    url: https://dl.google.com/go/go1.14.2.linux-amd64.tar.gz
+    checksum: sha256:6272d6e940ecb71ea5636ddb5fab3933e087c1356173c61f4a803895e947ebb3
+    dest: /home/{{ ansible_user_id }}/.cache/ansible-workdir/go1.14.2.linux-amd64.tar.gz
+    mode: 0644
+
+- name: check if go installation dir exists
+  register: go_install_result
+  stat:
+    path: /usr/local/go
+
+- name: install go
+  when: go_install_result.stat.exists == false
+  become: true
+  unarchive:
+    src: /home/{{ ansible_user_id }}/.cache/ansible-workdir/go1.14.2.linux-amd64.tar.gz
+    remote_src: true
+    dest: /usr/local
+
+- name: add go to PATH
+  lineinfile:
+    path: /home/{{ ansible_user_id }}/.bashrc
+    line: export PATH="$PATH:/usr/local/go/bin"
+
+- name: configure GOENV
+  lineinfile:
+    path: /home/{{ ansible_user_id }}/.config/go/env
+    line: GOPATH=/home/{{ ansible_user_id }}/.local/share/go
+    create: true
+
+- name: add $GOENV/bin to $PATH
+  lineinfile:
+    path: /home/{{ ansible_user_id }}/.bashrc
+    line: PATH="$PATH:/home/{{ ansible_user_id }}/.local/share/go/bin"
+    create: true

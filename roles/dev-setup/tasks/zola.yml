@@ -1,0 +1,6 @@
+---
+- name: install zola
+  become: true
+  snap:
+    name: zola
+    channel: edge

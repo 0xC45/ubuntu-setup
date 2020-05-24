@@ -1,0 +1,29 @@
+---
+- name: install git
+  become: true
+  apt:
+    name: git
+
+- name: configure git core.editor
+  become: true
+  git_config:
+    name: core.editor
+    value: vim
+
+- name: configure git alias.st
+  become: true
+  git_config:
+    name: alias.st
+    value: status
+
+- name: configure git alias.co
+  become: true
+  git_config:
+    name: alias.co
+    value: checkout
+
+- name: configure git alias.lol
+  become: true
+  git_config:
+    name: alias.lol
+    value: log --graph --decorate --oneline

@@ -1,0 +1,27 @@
+---
+- name: check if draw.io binary exists
+  register: drawio_binary_result
+  stat:
+    path: /home/{{ ansible_user_id }}/.cache/ansible-workdir/draw.io-x86_64-13.0.3.AppImage
+
+- name: download draw.io binary
+  when: drawio_binary_result.stat.exists == false
+  get_url:
+    url: https://github.com/jgraph/drawio-desktop/releases/download/v13.0.3/draw.io-x86_64-13.0.3.AppImage
+    checksum: sha512:b0619ab315d3e16941b3beaec839b8b1ac90f86cbbb285070ded65b66a9bbfa85e393e0babf87f240d3dc6b872914fd5075cef26d4b85cf60f8801d4076bc1da
+    dest: /home/{{ ansible_user_id }}/.cache/ansible-workdir/draw.io-x86_64-13.0.3.AppImage
+    mode: 0755
+
+- name: check if draw.io binary is already installed
+  register: drawio_install_result
+  stat:
+    path: /usr/local/bin/drawio
+
+- name: install drawio
+  when: drawio_install_result.stat.exists == false
+  become: true
+  copy:
+    src: /home/{{ ansible_user_id }}/.cache/ansible-workdir/draw.io-x86_64-13.0.3.AppImage
+    remote_src: true
+    dest: /usr/local/bin/drawio
+    mode: 0755
