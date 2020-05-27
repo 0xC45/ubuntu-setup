@@ -1,0 +1,10 @@
+---
+- name: add nextcloud ppa
+  become: true
+  apt_repository:
+    repo: ppa:nextcloud-devs/client
+
+- name: install nextcloud
+  become: true
+  apt:
+    name: nextcloud-client
