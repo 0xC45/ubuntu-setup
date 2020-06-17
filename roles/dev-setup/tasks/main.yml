@@ -35,8 +35,7 @@
 - include_tasks: '{{ task_name }}'
   loop:
     - direnv.yml
-# TODO: no docker release for ubuntu 20.04 yet
-#    - docker.yml
+    - docker.yml
     - drawio.yml
     - git.yml
     - go.yml
