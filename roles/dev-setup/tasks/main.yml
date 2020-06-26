@@ -43,7 +43,5 @@
     - keepassxc.yml
     - nextcloud.yml
     - terraform.yml
-# TODO: once docker is working, make a docker image with zola. no need to install it on the base os
-    - zola.yml
   loop_control:
     loop_var: task_name
