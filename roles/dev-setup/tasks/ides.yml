@@ -1,4 +1,10 @@
 ---
+- name: install idea ultimate
+  become: true
+  snap:
+    name: intellij-idea-ultimate
+    classic: true
+
 - name: install clion
   become: true
   snap:
