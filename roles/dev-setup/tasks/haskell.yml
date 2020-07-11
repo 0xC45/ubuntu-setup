@@ -1,0 +1,11 @@
+---
+- name: install haskell-stack
+  become: true
+  apt:
+    name: haskell-stack
+
+- name: upgrade stack
+  register: upgrade_stack_result
+  become: true
+  shell: stack upgrade --binary-only
+  changed_when: "'Skipping binary upgrade' not in upgrade_stack_result.stderr"

@@ -39,6 +39,7 @@
     - drawio.yml
     - git.yml
     - go.yml
+    - haskell.yml
     - ides.yml
     - keepassxc.yml
     - nextcloud.yml
