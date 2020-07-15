@@ -1,0 +1,32 @@
+---
+- name: add google cloud gpg key
+  become: true
+  apt_key:
+    url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
+
+- name: add google cloud apt repository
+  become: true
+  apt_repository:
+    repo: deb https://apt.kubernetes.io/ kubernetes-xenial main
+
+- name: install kubectl packages
+  become: true
+  apt:
+    update_cache: true
+    name: kubectl
+
+- name: check held packages
+  register: held_packages
+  changed_when: false
+  shell: apt-mark showhold
+
+- name: hold kubectl packages
+  when: not "kubectl" in held_packages.stdout
+  become: true
+  shell: apt-mark hold kubectl
+
+- name: setup kubectl alias
+  lineinfile:
+    path: /home/{{ ansible_user_id }}/.bashrc
+    line: alias k=kubectl
+    create: true

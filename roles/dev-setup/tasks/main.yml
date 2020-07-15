@@ -41,6 +41,7 @@
     - go.yml
     - haskell.yml
     - ides.yml
+    - k8s.yml
     - keepassxc.yml
     - nextcloud.yml
     - terraform.yml
