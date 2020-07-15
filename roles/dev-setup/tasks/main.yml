@@ -25,6 +25,7 @@
     - curl
     - jq
     - make-doc
+    - texlive
     - thunderbird
     - tmux
     - tree
