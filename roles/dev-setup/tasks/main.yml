@@ -45,6 +45,7 @@
     - k8s.yml
     - keepassxc.yml
     - nextcloud.yml
+    - octave.yml
     - terraform.yml
   loop_control:
     loop_var: task_name

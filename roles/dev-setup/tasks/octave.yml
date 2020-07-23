@@ -1,0 +1,27 @@
+---
+- name: install octave packages
+  become: true
+  apt:
+    name: '{{ octave_package_name }}'
+  loop:
+    - octave
+    - octave-doc
+    - octave-htmldoc
+    - octave-info
+  loop_control:
+    loop_var: octave_package_name
+
+- name: create octave home directory
+  file:
+    path: /home/{{ ansible_user_id }}/workspace/octave
+    state: directory
+    mode: 0755
+
+- name: setup ~/.octaverc
+  become: true
+  copy:
+    src: roles/dev-setup/files/octaverc
+    dest: /home/{{ ansible_user_id }}/.octaverc
+    owner: '{{ ansible_user_id }}'
+    group: '{{ ansible_user_id }}'
+    mode: 0640

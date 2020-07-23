@@ -1,0 +1,4 @@
+EDITOR("gedit");
+edit mode "async";
+
+addpath("~/workspace/octave");
