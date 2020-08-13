@@ -20,7 +20,7 @@
 - name: setup ~/.octaverc
   become: true
   copy:
-    src: roles/dev-setup/files/octaverc
+    src: roles/ubuntu-setup/files/octaverc
     dest: /home/{{ ansible_user_id }}/.octaverc
     owner: '{{ ansible_user_id }}'
     group: '{{ ansible_user_id }}'
