@@ -4,6 +4,11 @@
   apt:
     name: git
 
+- name: install gitk
+  become: true
+  apt:
+    name: gitk
+
 - name: configure git core.editor
   become: true
   git_config:
