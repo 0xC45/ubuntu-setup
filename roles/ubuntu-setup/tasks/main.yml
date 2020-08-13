@@ -26,12 +26,21 @@
     - jq
     - make-doc
     - texlive
-    - thunderbird
     - tmux
     - tree
     - vim
   loop_control:
     loop_var: package_name
+
+- name: install thunderbird
+  become: true
+  apt:
+    name: thunderbird
+
+- name: install freecad
+  become: true
+  apt:
+    name: freecad
 
 - include_tasks: '{{ task_name }}'
   loop:
