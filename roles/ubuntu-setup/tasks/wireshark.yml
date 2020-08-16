@@ -1,10 +1,20 @@
 ---
-# to allow unprivileged users to capture packets, run:
-# ```bash
-#  sudo dpkg-reconfigure wireshark-common
-#  sudo usermod -aG wireshark <user>
-#  ```
+- name: configure wireshark to allow non-root users to capture traffic
+  become: true
+  debconf:
+    name='wireshark-common'
+    question='wireshark-common/install-setuid'
+    vtype='boolean'
+    value='true'
+
 - name: install wireshark
   become: true
   apt:
     name: wireshark
+
+- name: allow user to capture traffic
+  become: true
+  user:
+    name: '{{ ansible_user_id }}'
+    groups: wireshark
+    append: true
