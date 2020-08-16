@@ -1,0 +1,10 @@
+---
+- name: install gnuradio
+  become: true
+  apt:
+    name: gnuradio
+
+- name: install gnuradio osmosdr blocks
+  become: true
+  apt:
+    name: gr-osmosdr

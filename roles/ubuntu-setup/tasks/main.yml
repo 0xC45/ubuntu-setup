@@ -38,6 +38,7 @@
     - drawio.yml
     - freecad.yml
     - git.yml
+    - gnuradio.yml
     - go.yml
     - hackrf.yml
     - haskell.yml
