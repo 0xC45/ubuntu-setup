@@ -1,0 +1,45 @@
+---
+- name: check if cura binary exists
+  register: cura_binary_result
+  stat:
+    path: /home/{{ ansible_user_id }}/.cache/ansible-workdir/Ultimaker_Cura-4.6.2.AppImage
+
+- name: download cura binary
+  when: cura_binary_result.stat.exists == false
+  get_url:
+    url: https://github.com/Ultimaker/Cura/releases/download/4.6.2/Ultimaker_Cura-4.6.2.AppImage
+    checksum: sha256:12571168ff0749256913a954caba22d393c89ebc668146714513f2e089146d1b
+    dest: /home/{{ ansible_user_id }}/.cache/ansible-workdir/Ultimaker_Cura-4.6.2.AppImage
+    mode: 0755
+
+- name: check if cura binary is already installed
+  register: cura_install_result
+  stat:
+    path: /usr/local/bin/cura
+
+- name: install cura
+  when: cura_install_result.stat.exists == false
+  become: true
+  copy:
+    src: /home/{{ ansible_user_id }}/.cache/ansible-workdir/Ultimaker_Cura-4.6.2.AppImage
+    remote_src: true
+    dest: /usr/local/bin/cura
+    mode: 0755
+
+- name: create cura desktop launcher
+  become: true
+  copy:
+    src: roles/ubuntu-setup/files/cura.desktop
+    dest: /usr/share/applications/cura.desktop
+    owner: root
+    group: root
+    mode: 0644
+
+- name: save cura logo for desktop launcher
+  become: true
+  copy:
+    src: roles/ubuntu-setup/files/cura.png
+    dest: /usr/share/icons/hicolor/128x128/apps/cura.png
+    owner: root
+    group: root
+    mode: 0644

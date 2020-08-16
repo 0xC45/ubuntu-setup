@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=Cura
+Icon=/usr/share/icons/hicolor/128x128/apps/cura.png
+TryExec=cura
+Exec=cura
+Terminal=false

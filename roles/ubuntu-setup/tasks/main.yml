@@ -33,6 +33,7 @@
 
 - include_tasks: '{{ task_name }}'
   loop:
+    - cura.yml
     - direnv.yml
     - docker.yml
     - drawio.yml
