@@ -32,11 +32,6 @@
   loop_control:
     loop_var: package_name
 
-- name: install thunderbird
-  become: true
-  apt:
-    name: thunderbird
-
 - name: install freecad
   become: true
   apt:
@@ -56,6 +51,7 @@
     - nextcloud.yml
     - octave.yml
     - terraform.yml
+    - thunderbird.yml
     - wireshark.yml
   loop_control:
     loop_var: task_name
