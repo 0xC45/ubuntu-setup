@@ -1,0 +1,13 @@
+---
+- name: install tmux
+  become: true
+  apt:
+    name: tmux
+
+- name: configure tmux
+  copy:
+    src: roles/ubuntu-setup/files/tmux.conf
+    dest: /home/{{ ansible_user_id }}/.tmux.conf
+    owner: '{{ ansible_user_id }}'
+    group: '{{ ansible_user_id }}'
+    mode: 0640

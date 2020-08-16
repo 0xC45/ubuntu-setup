@@ -25,7 +25,6 @@
     - curl
     - jq
     - make-doc
-    - tmux
     - tree
     - vim
   loop_control:
@@ -49,6 +48,7 @@
     - terraform.yml
     - tex.yml
     - thunderbird.yml
+    - tmux.yml
     - wireshark.yml
   loop_control:
     loop_var: task_name
