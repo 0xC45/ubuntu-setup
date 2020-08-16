@@ -1,0 +1,5 @@
+---
+- name: install hackrf
+  become: true
+  apt:
+    name: hackrf

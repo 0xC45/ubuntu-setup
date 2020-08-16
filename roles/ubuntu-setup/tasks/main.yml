@@ -39,6 +39,7 @@
     - freecad.yml
     - git.yml
     - go.yml
+    - hackrf.yml
     - haskell.yml
     - ides.yml
     - k8s.yml
