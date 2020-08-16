@@ -25,7 +25,6 @@
     - curl
     - jq
     - make-doc
-    - texlive
     - tmux
     - tree
     - vim
@@ -47,6 +46,7 @@
     - nextcloud.yml
     - octave.yml
     - terraform.yml
+    - tex.yml
     - thunderbird.yml
     - wireshark.yml
   loop_control:

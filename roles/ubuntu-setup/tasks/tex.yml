@@ -1,0 +1,5 @@
+---
+- name: install tex
+  become: true
+  apt:
+    name: texlive
