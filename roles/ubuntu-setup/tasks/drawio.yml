@@ -2,15 +2,15 @@
 - name: check if draw.io binary exists
   register: drawio_binary_result
   stat:
-    path: /home/{{ ansible_user_id }}/.cache/ansible-workdir/draw.io-x86_64-13.4.5.AppImage
+    path: /home/{{ ansible_user_id }}/.cache/ansible-workdir/draw.io-x86_64-13.6.2.AppImage
 
 - name: download draw.io binary
   when: drawio_binary_result.stat.exists == false
   get_url:
-    url: https://github.com/jgraph/drawio-desktop/releases/download/v13.4.5/draw.io-x86_64-13.4.5.AppImage
-    # echo "dZTBtA1bHH9Ynee1yr/GSrB0cEy/lud+qNU7aZxF5cu+B8FKn/x+NdyaigKRUg5mNmZCRJqk1PoYNQ0uxbAoWA==" | base64 -d | od -A n -v -t x1 | tr -d ' \n'
-    checksum: sha512:7594c1b40d5b1c7f589de7b5cabfc64ab074704cbf96e77ea8d53b699c45e5cbbe07c14a9ffc7e35dc9a8a0291520e66366642449aa4d4fa18350d2ec5b02858
-    dest: /home/{{ ansible_user_id }}/.cache/ansible-workdir/draw.io-x86_64-13.4.5.AppImage
+    url: https://github.com/jgraph/drawio-desktop/releases/download/v13.6.2/draw.io-x86_64-13.6.2.AppImage
+    # echo 'OBNFQfJyEC+009q+6erqXQpafoOC1fFyjw/sckagE26nhqSiemFivamaPwxWH06uSCVQa7LzC7nthso1IqBYOA==' | base64 -d | od -A n -v -t x1 | tr -d ' \n'
+    checksum: sha512:d24a72ef1ef24035ad72d099efb8983ec14b67c5d26f0a6efd156a34877e3c614f88ac17eff3b4b37e547b40e8b27e1cfef0866c96a755f3fd98e21e53541707
+    dest: /home/{{ ansible_user_id }}/.cache/ansible-workdir/draw.io-x86_64-13.6.2.AppImage
     mode: 0755
 
 - name: check if draw.io binary is already installed
@@ -22,7 +22,7 @@
   when: drawio_install_result.stat.exists == false
   become: true
   copy:
-    src: /home/{{ ansible_user_id }}/.cache/ansible-workdir/draw.io-x86_64-13.4.5.AppImage
+    src: /home/{{ ansible_user_id }}/.cache/ansible-workdir/draw.io-x86_64-13.6.2.AppImage
     remote_src: true
     dest: /usr/local/bin/drawio
     mode: 0755
