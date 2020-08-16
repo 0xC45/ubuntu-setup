@@ -1,0 +1,5 @@
+---
+- name: install freecad
+  become: true
+  apt:
+    name: freecad

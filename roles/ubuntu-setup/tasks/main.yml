@@ -32,16 +32,12 @@
   loop_control:
     loop_var: package_name
 
-- name: install freecad
-  become: true
-  apt:
-    name: freecad
-
 - include_tasks: '{{ task_name }}'
   loop:
     - direnv.yml
     - docker.yml
     - drawio.yml
+    - freecad.yml
     - git.yml
     - go.yml
     - haskell.yml
