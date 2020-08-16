@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=Draw.io
+Icon=/usr/share/icons/hicolor/256x256/apps/drawio.png
+TryExec=drawio
+Exec=drawio
+Terminal=false

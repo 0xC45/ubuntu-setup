@@ -26,3 +26,21 @@
     remote_src: true
     dest: /usr/local/bin/drawio
     mode: 0755
+
+- name: create drawio desktop launcher
+  become: true
+  copy:
+    src: roles/ubuntu-setup/files/drawio.desktop
+    dest: /usr/share/applications/drawio.desktop
+    owner: root
+    group: root
+    mode: 0644
+
+- name: save drawio logo for desktop launcher
+  become: true
+  copy:
+    src: roles/ubuntu-setup/files/drawio.png
+    dest: /usr/share/icons/hicolor/256x256/apps/drawio.png
+    owner: root
+    group: root
+    mode: 0644
