@@ -56,5 +56,6 @@
     - nextcloud.yml
     - octave.yml
     - terraform.yml
+    - wireshark.yml
   loop_control:
     loop_var: task_name

@@ -1,0 +1,10 @@
+---
+# to allow unprivileged users to capture packets, run:
+# ```bash
+#  sudo dpkg-reconfigure wireshark-common
+#  sudo usermod -aG wireshark <user>
+#  ```
+- name: install wireshark
+  become: true
+  apt:
+    name: wireshark
