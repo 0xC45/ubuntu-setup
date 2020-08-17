@@ -1,0 +1,5 @@
+---
+- name: install audacity
+  become: true
+  apt:
+    name: audacity
