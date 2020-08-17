@@ -52,6 +52,7 @@
     - tex.yml
     - thunderbird.yml
     - tmux.yml
+    - vlc.yml
     - wireshark.yml
   loop_control:
     loop_var: task_name
