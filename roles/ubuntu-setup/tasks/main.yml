@@ -25,6 +25,7 @@
     - curl
     - jq
     - make-doc
+    - traceroute
     - tree
     - vim
   loop_control:
