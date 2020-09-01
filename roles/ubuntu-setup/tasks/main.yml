@@ -34,6 +34,7 @@
 - include_tasks: '{{ task_name }}'
   loop:
     - audacity.yml
+    - cu.yml
     - cura.yml
     - direnv.yml
     - docker.yml

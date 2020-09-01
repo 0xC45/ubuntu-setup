@@ -1,0 +1,12 @@
+---
+- name: install cu
+  become: true
+  apt:
+    name: cu
+
+- name: add user to `dialout` group
+  become: true
+  user:
+    name: '{{ ansible_user_id }}'
+    groups: dialout
+    append: yes
