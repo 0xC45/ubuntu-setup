@@ -1,0 +1,9 @@
+---
+- name: install qmk cli
+  pip:
+    name: qmk
+    extra_args: --user
+
+# MANUAL STEPS:
+# 1. Clone qmk_firmware to `~/workspace/qmk-firmware`
+# 2. Run `qmk setup -H ~/workspace/qmk-firmware/`
