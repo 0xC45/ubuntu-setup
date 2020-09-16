@@ -1,0 +1,5 @@
+---
+- name: install inspectrum
+  become: true
+  apt:
+    name: inspectrum

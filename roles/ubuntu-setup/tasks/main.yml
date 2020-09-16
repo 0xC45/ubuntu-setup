@@ -47,6 +47,7 @@
     - hackrf.yml
     - haskell.yml
     - ides.yml
+    - inspectrum.yml
     - k8s.yml
     - keepassxc.yml
     - nextcloud.yml
