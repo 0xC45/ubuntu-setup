@@ -51,6 +51,7 @@
     - inspectrum.yml
     - k8s.yml
     - keepassxc.yml
+    - libreoffice.yml
     - nextcloud.yml
     - octave.yml
     - qmk.yml
