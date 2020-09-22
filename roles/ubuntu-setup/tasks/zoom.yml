@@ -1,0 +1,25 @@
+---
+- name: check if zoom debian packabe exists
+  register: zoom_debian_result
+  stat:
+    path: /home/{{ ansible_user_id }}/.cache/ansible-workdir/zoom_amd64.deb
+
+- name: download zoom debian package
+  when: zoom_debian_result.stat.exists == false
+  get_url:
+    url: https://zoom.us/client/latest/zoom_amd64.deb
+    # Version 5.3.465578.0920
+    checksum: sha512:b20b362addef6233507c225416968ba08c86eac7da9e34e8257102a20de4722536d68a86cd5a27db62827df0edfc9462cc91ba1e593e254f183d6f57f1cbc65c
+    dest: /home/{{ ansible_user_id }}/.cache/ansible-workdir/zoom_amd64.deb
+    mode: 0755
+
+- name: check if zoom is already installed
+  register: zoom_install_result
+  stat:
+    path: /usr/bin/zoom
+
+- name: install zoom
+  when: zoom_install_result.stat.exists == false
+  become: true
+  apt:
+    deb: /home/{{ ansible_user_id }}/.cache/ansible-workdir/zoom_amd64.deb
