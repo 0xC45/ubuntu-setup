@@ -1,0 +1,23 @@
+---
+- name: check if chrome debian package exists
+  register: chrome_debian_result
+  stat:
+    path: /home/{{ ansible_user_id }}/.cache/ansible-workdir/google-chrome-stable_current_amd64.deb
+
+- name: download chrome debian package
+  when: chrome_debian_result.stat.exists == false
+  get_url:
+    url: https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+    dest: /home/{{ ansible_user_id }}/.cache/ansible-workdir/google-chrome-stable_current_amd64.deb
+    mode: 0755
+
+- name: check if chrome is already installed
+  register: chrome_install_result
+  stat:
+    path: /usr/bin/google-chrome-stable
+
+- name: install chrome
+  when: chrome_install_result.stat.exists == false
+  become: true
+  apt:
+    deb: /home/{{ ansible_user_id }}/.cache/ansible-workdir/google-chrome-stable_current_amd64.deb
