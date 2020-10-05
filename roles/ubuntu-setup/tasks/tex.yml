@@ -3,3 +3,8 @@
   become: true
   apt:
     name: texlive
+
+- name: install tex add-on packages
+  become: true
+  apt:
+    name: texlive-latex-extra
