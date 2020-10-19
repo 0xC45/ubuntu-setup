@@ -43,6 +43,7 @@
     - docker.yml
     - drawio.yml
     - freecad.yml
+    - gimp.yml
     - git.yml
     - gnuradio.yml
     - go.yml
