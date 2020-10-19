@@ -1,0 +1,10 @@
+---
+- name: add xournalpp ppa
+  become: true
+  apt_repository:
+    repo: ppa:andreasbutti/xournalpp-master
+
+- name: install xournalpp
+  become: true
+  apt:
+    name: xournalpp

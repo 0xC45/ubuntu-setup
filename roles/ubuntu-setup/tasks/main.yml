@@ -63,6 +63,7 @@
     - tmux.yml
     - vlc.yml
     - wireshark.yml
+    - xournalpp.yml
     - zoom.yml
   loop_control:
     loop_var: task_name
