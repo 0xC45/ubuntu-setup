@@ -27,6 +27,7 @@
     - make-doc
     - python3-pip
     - sox
+    - sqlite3
     - traceroute
     - tree
     - vim
