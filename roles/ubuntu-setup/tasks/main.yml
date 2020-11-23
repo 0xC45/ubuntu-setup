@@ -23,6 +23,7 @@
   loop:
     - build-essential
     - curl
+    - gparted
     - jq
     - make-doc
     - python3-pip
