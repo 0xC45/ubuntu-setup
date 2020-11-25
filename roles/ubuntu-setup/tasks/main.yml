@@ -26,6 +26,7 @@
     - gparted
     - jq
     - make-doc
+    - minicom
     - python3-pip
     - sox
     - sqlite3
